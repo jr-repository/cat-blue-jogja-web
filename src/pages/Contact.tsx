@@ -11,6 +11,7 @@ const Contact = () => {
         subtitle="Dapatkan penawaran gratis atau konsultasikan proyek Anda dengan tim kami"
         bgImage={ASSETS.gallery.exterior2}
         minHeight="min-h-[60vh]"
+        overlay="bg-gradient-to-r from-dimasBlue-900/80 to-dimasBlue-600/70"
       />
       
       <ContactSection />

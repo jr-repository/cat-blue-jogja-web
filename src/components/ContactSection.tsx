@@ -9,7 +9,6 @@ import { useToast } from "@/hooks/use-toast";
 
 const ContactSection = () => {
   const { toast } = useToast();
-  const mapContainerRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,38 +31,9 @@ const ContactSection = () => {
     });
     setFormData({ name: '', email: '', phone: '', message: '' });
   };
-  
-  // Initialize the map
-  useEffect(() => {
-    // This is a placeholder for a real map implementation
-    // In a real application, you would use a mapping library like Google Maps, Mapbox, etc.
-    const initMap = () => {
-      if (mapContainerRef.current) {
-        // In a real implementation, you'd initialize your map here
-        const mapPlaceholder = document.createElement('div');
-        mapPlaceholder.className = 'bg-dimasBlue-200 h-full w-full flex items-center justify-center';
-        mapPlaceholder.innerHTML = `
-          <div class="text-center">
-            <p class="text-xl font-semibold">Lokasi Dimas Paint Jogja</p>
-            <p>Jl. Kaliurang Km 10, Yogyakarta</p>
-            <p class="mt-2 text-sm">(Peta akan dimuat di sini)</p>
-          </div>
-        `;
-        mapContainerRef.current.innerHTML = '';
-        mapContainerRef.current.appendChild(mapPlaceholder);
-      }
-    };
-
-    initMap();
-    
-    // Cleanup function if needed
-    return () => {
-      // Cleanup code here
-    };
-  }, []);
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-dimasBlue-100">
+    <section id="contact" className="py-16 md:py-24 bg-gradient-to-b from-dimasBlue-50 to-dimasBlue-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-dimasGray-800 mb-4">Hubungi Kami</h2>
@@ -74,7 +44,7 @@ const ContactSection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Contact Form */}
-          <Card className="p-6 md:p-8 shadow-md">
+          <Card className="p-6 md:p-8 shadow-md bg-white">
             <h3 className="text-2xl font-semibold mb-6 text-dimasGray-800">Kirim Pesan</h3>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-6">
@@ -85,6 +55,7 @@ const ContactSection = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    className="border-dimasBlue-300 focus:border-dimasBlue-500"
                   />
                 </div>
                 <div>
@@ -95,6 +66,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    className="border-dimasBlue-300 focus:border-dimasBlue-500"
                   />
                 </div>
                 <div>
@@ -104,12 +76,13 @@ const ContactSection = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     required
+                    className="border-dimasBlue-300 focus:border-dimasBlue-500"
                   />
                 </div>
                 <div>
                   <Textarea
                     placeholder="Pesan Anda"
-                    className="min-h-[120px]"
+                    className="min-h-[120px] border-dimasBlue-300 focus:border-dimasBlue-500"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
@@ -119,7 +92,7 @@ const ContactSection = () => {
                 <div>
                   <Button 
                     type="submit" 
-                    className="w-full bg-dimasBlue-500 hover:bg-dimasBlue-600 text-white"
+                    className="w-full bg-gradient-to-r from-dimasBlue-500 to-dimasBlue-600 hover:from-dimasBlue-600 hover:to-dimasBlue-700 text-white"
                   >
                     Kirim Pesan
                   </Button>
@@ -129,9 +102,9 @@ const ContactSection = () => {
           </Card>
 
           {/* Contact Info and Map */}
-          <div className="flex flex-col h-full">
+          <div className="flex flex-col h-full space-y-6">
             {/* Contact Information */}
-            <Card className="p-6 md:p-8 shadow-md mb-6">
+            <Card className="p-6 md:p-8 shadow-md bg-white flex-shrink-0">
               <h3 className="text-2xl font-semibold mb-6 text-dimasGray-800">Informasi Kontak</h3>
               <div className="space-y-4">
                 <div className="flex items-start">
@@ -178,9 +151,21 @@ const ContactSection = () => {
               </div>
             </Card>
 
-            {/* Map */}
-            <Card className="flex-1 overflow-hidden shadow-md">
-              <div ref={mapContainerRef} className="w-full h-full min-h-[250px]"></div>
+            {/* Google Maps */}
+            <Card className="flex-grow shadow-md overflow-hidden rounded-lg">
+              <div className="w-full h-full min-h-[300px]">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63251.74923415177!2d110.3912162!3d-7.7649566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a58f99013c989%3A0x2a96db25b8ff4333!2sMonumen%20Yogya%20Kembali!5e0!3m2!1sid!2sid!4v1747083641115!5m2!1sid!2sid" 
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0, minHeight: "300px" }} 
+                  allowFullScreen 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Lokasi Dimas Paint Jogja"
+                  className="w-full h-full"
+                ></iframe>
+              </div>
             </Card>
           </div>
         </div>

@@ -8,7 +8,7 @@ import ContactSection from '@/components/ContactSection';
 const Index = () => {
   return (
     <div>
-      <Hero />
+      <Hero overlay="bg-gradient-to-r from-dimasBlue-900/80 to-dimasBlue-600/70" />
       <ServicesSection />
       <TestimonialsSection />
       <GallerySection />

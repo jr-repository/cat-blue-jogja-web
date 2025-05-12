@@ -7,13 +7,15 @@ interface HeroProps {
   subtitle?: string;
   bgImage?: string;
   minHeight?: string;
+  overlay?: string;
 }
 
 const Hero = ({
   title = "Jasa Pengecatan Profesional",
   subtitle = "Layanan pengecatan berkualitas tinggi untuk rumah, gedung, dan area komersial",
   bgImage = ASSETS.hero,
-  minHeight = "min-h-[90vh]"
+  minHeight = "min-h-[90vh]",
+  overlay = "bg-dimasBlue-900/60"
 }: HeroProps) => {
   return (
     <section 
@@ -24,8 +26,8 @@ const Hero = ({
         backgroundPosition: 'center'
       }}
     >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-dimasBlue-900/60"></div>
+      {/* Overlay with gradient */}
+      <div className={`absolute inset-0 ${overlay}`}></div>
       
       {/* Content */}
       <div className="container relative z-10 px-4 md:px-0 text-center">

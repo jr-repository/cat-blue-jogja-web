@@ -2,8 +2,12 @@
 import Hero from '@/components/Hero';
 import GallerySection from '@/components/GallerySection';
 import { ASSETS } from '@/assets';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 const Gallery = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Hero 
@@ -11,6 +15,7 @@ const Gallery = () => {
         subtitle="Lihat hasil pekerjaan kami yang telah diselesaikan dengan kualitas terbaik"
         bgImage={ASSETS.gallery.interior1}
         minHeight="min-h-[60vh]"
+        overlay="bg-gradient-to-r from-dimasBlue-900/80 to-dimasBlue-600/70"
       />
       
       <section className="py-12">
@@ -53,10 +58,19 @@ const Gallery = () => {
             <h3 className="text-2xl font-semibold text-dimasGray-800 mb-2">
               Renovasi Hotel Pesona Jogja
             </h3>
-            <p className="text-dimasGray-400 mb-4">
+            <p className="text-dimasGray-400 mb-6">
               Proyek pengecatan ulang seluruh interior dan eksterior Hotel Pesona Jogja. 
               Tim Dimas Paint menyelesaikan proyek ini dalam waktu 3 minggu dengan hasil yang sangat memuaskan.
             </p>
+            
+            <div className="mb-8">
+              <Button 
+                onClick={() => navigate('/portfolio/hotel-pesona')}
+                className="bg-dimasBlue-500 hover:bg-dimasBlue-600 text-white"
+              >
+                Lihat Detail Proyek
+              </Button>
+            </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
               <img 
